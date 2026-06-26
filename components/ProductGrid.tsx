@@ -1,4 +1,4 @@
-import ProductCard, { Product } from "./ProductCard";
+import { Product } from "@/lib/products";
 export default function ProductGrid({ products }: { products: Product[] }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
