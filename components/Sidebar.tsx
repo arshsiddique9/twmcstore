@@ -1,5 +1,6 @@
 import Link from "next/link";
-import PixelIcon, { type IconKey } from "./PixelIcon";
+import PixelIcon from "./PixelIcon";
+import { type IconKey } from "@/lib/products";
 
 const cats: { href: string; label: string; desc: string; icon: IconKey }[] = [
   { href: "/ranks", label: "RANKS", desc: "VIP / MVP / ELITE / GOD", icon: "sword" },
