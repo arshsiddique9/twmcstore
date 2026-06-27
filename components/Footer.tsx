@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="mt-20 border-t-2 border-twmc-red/40 bg-black/80">
@@ -6,17 +8,29 @@ export default function Footer() {
           <h4 className="font-pixel text-xs text-twmc-red glow-red mb-2">TWMC</h4>
           <p className="text-twmc-ash">The ultimate Minecraft experience. play.twmc.fun</p>
         </div>
-        
+
         <div>
           <h4 className="font-pixel text-xs text-twmc-red mb-2">LINKS</h4>
           <ul className="space-y-1 text-twmc-ash">
-            <li>Terms of Service</li>
-            <li>Refund Policy</li>
-            <li>Privacy</li>
             <li>
-              <a 
-                href="https://discord.gg/sY7DShejtr" 
-                target="_blank" 
+              <Link href="/terms" className="hover:text-twmc-red transition">
+                Terms of Service
+              </Link>
+            </li>
+            <li>
+              <Link href="/refund" className="hover:text-twmc-red transition">
+                Refund Policy
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-twmc-red transition">
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <a
+                href="https://discord.gg/sY7DShejtr"
+                target="_blank"
                 rel="noreferrer"
                 className="hover:text-twmc-red transition"
               >
@@ -36,7 +50,6 @@ export default function Footer() {
               className="text-twmc-ash hover:text-[#5865F2] transition"
               aria-label="Discord"
             >
-              {/* Discord SVG Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
