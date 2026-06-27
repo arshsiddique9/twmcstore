@@ -30,8 +30,12 @@ export default function ProductCard({ p }: { p: Product }) {
       .catch(() => {});
   }, []);
 
-  // PRIMARY = product ki original currency, SECONDARY = doosri currency (converted)
-  const { primary, secondary } = dualPrice(p.priceNum, p.currency, rate);
+  // ✅ dualPrice se INR aur USD dono milte hain
+  const { inr, usd } = dualPrice(p.priceNum, p.currency, rate);
+
+  // Primary = product ki original currency, Secondary = doosri currency
+  const primary = p.currency === "INR" ? inr : usd;
+  const secondary = p.currency === "INR" ? usd : inr;
 
   const t = tierColors[p.tier as keyof typeof tierColors] || "text-white";
   const glow = accentGlow[p.accent as keyof typeof accentGlow] || "";
@@ -62,12 +66,10 @@ export default function ProductCard({ p }: { p: Product }) {
         ))}
       </ul>
 
-      {/* ✅ PRICE SECTION — PRIMARY (bada) + SECONDARY (chhota) dono dikhenge */}
+      {/* ✅ PRICE SECTION — Primary (bada) + Secondary (chhota) */}
       <div className="mt-4 pt-3 border-t border-twmc-gray/40">
         <p className="font-pixel text-[8px] text-twmc-ash tracking-widest">PRICE</p>
-        {/* Primary Price — 🔥 Bada dikhega */}
         <p className={`font-pixel text-xl ${t} mt-1`}>[{primary}]</p>
-        {/* Secondary Price — 🔥 Chhota dikhega (approx) */}
         <p className="font-pixel text-[9px] text-twmc-ash mt-1">≈ {secondary}</p>
       </div>
 
