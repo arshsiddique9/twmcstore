@@ -93,9 +93,9 @@ export const ranks: Product[] = [
     ]
   },
   {
-    id: "champion", 
+    id: "zeus", 
     tebexId: "7524003", // ✅ REAL ID DAAL DI
-    name: "CHAMPION",
+    name: "ZEUS",
     tier: "legendary", 
     price: "₹1499", 
     priceNum: 1499, 
