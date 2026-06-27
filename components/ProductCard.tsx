@@ -30,8 +30,12 @@ export default function ProductCard({ p }: { p: Product }) {
       .catch(() => {});
   }, []);
 
-  // ✅ dualPrice se direct primary aur secondary milte hain
-  const { primary, secondary } = dualPrice(p.priceNum, p.currency, rate);
+  // INR aur USD dono values le lo
+  const { inr, usd } = dualPrice(p.priceNum, p.currency, rate);
+
+  // ⭐ PRIMARY = INR (bada), SECONDARY = USD (chhota) — har product ke liye
+  const primary = inr;
+  const secondary = usd;
 
   const t = tierColors[p.tier as keyof typeof tierColors] || "text-white";
   const glow = accentGlow[p.accent as keyof typeof accentGlow] || "";
@@ -55,17 +59,17 @@ export default function ProductCard({ p }: { p: Product }) {
       <p className="text-xs text-twmc-ash mt-1 leading-relaxed">{p.desc}</p>
 
       <ul className="mt-3 space-y-1 flex-grow">
-        {p.perks.slice(0, 4).map((perk, i) => (
+        {p.perks.slice(0, 6).map((perk, i) => (
           <li key={i} className="text-[10px] text-twmc-ash flex items-center gap-2">
             <span className="text-twmc-red">◆</span> {perk}
           </li>
         ))}
       </ul>
 
-      {/* ✅ PRICE SECTION — Primary (bada) + Secondary (chhota) */}
+      {/* ⭐ PRICE — brackets hata diye, sirf ₹299 / $0.62 */}
       <div className="mt-4 pt-3 border-t border-twmc-gray/40">
         <p className="font-pixel text-[8px] text-twmc-ash tracking-widest">PRICE</p>
-        <p className={`font-pixel text-xl ${t} mt-1`}>[{primary}]</p>
+        <p className={`font-pixel text-xl ${t} mt-1`}>{primary}</p>
         <p className="font-pixel text-[9px] text-twmc-ash mt-1">≈ {secondary}</p>
       </div>
 
