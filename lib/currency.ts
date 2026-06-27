@@ -1,5 +1,5 @@
-// INR ↔ USD live conversion (uses exchangerate.host - free, no key)
-const USD_TO_INR = 83.5; // fallback (update from /api/rate)
+// INR ↔ USD live conversion (free API)
+const USD_TO_INR = 83.5; // fallback
 
 export function formatPrice(amount: number, currency: "INR" | "USD"): string {
   if (currency === "INR") return `₹${amount.toLocaleString("en-IN")}`;
@@ -12,15 +12,16 @@ export function convert(amount: number, from: "INR" | "USD", to: "INR" | "USD", 
   return amount / rate;
 }
 
-export function dualPrice(amount: number, currency: "INR" | "USD", rate = USD_TO_INR): { primary: string; secondary: string } {
+// ⭐ AB YEH FUNCTION INR AUR USD DONO RETURN KARTA HAI
+export function dualPrice(amount: number, currency: "INR" | "USD", rate = USD_TO_INR): { inr: string; usd: string } {
   if (currency === "INR") {
     return {
-      primary: `₹${amount.toLocaleString("en-IN")}`,
-      secondary: `$${(amount / rate).toFixed(2)}`
+      inr: `₹${amount.toLocaleString("en-IN")}`,
+      usd: `$${(amount / rate).toFixed(2)}`
     };
   }
   return {
-    primary: `$${amount.toFixed(2)}`,
-    secondary: `₹${Math.round(amount * rate).toLocaleString("en-IN")}`
+    inr: `₹${Math.round(amount * rate).toLocaleString("en-IN")}`,
+    usd: `$${amount.toFixed(2)}`
   };
 }
