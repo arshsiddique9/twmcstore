@@ -30,12 +30,8 @@ export default function ProductCard({ p }: { p: Product }) {
       .catch(() => {});
   }, []);
 
-  // ✅ dualPrice se INR aur USD dono milte hain
-  const { inr, usd } = dualPrice(p.priceNum, p.currency, rate);
-
-  // Primary = product ki original currency, Secondary = doosri currency
-  const primary = p.currency === "INR" ? inr : usd;
-  const secondary = p.currency === "INR" ? usd : inr;
+  // ✅ dualPrice se direct primary aur secondary milte hain
+  const { primary, secondary } = dualPrice(p.priceNum, p.currency, rate);
 
   const t = tierColors[p.tier as keyof typeof tierColors] || "text-white";
   const glow = accentGlow[p.accent as keyof typeof accentGlow] || "";
